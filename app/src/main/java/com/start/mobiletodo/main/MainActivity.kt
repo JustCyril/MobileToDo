@@ -1,7 +1,8 @@
-package com.start.mobiletodo
+package com.start.mobiletodo.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.start.mobiletodo.R
 
 class MainActivity : AppCompatActivity() {
 
