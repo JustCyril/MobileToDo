@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">MobileToDo</string>
+    <string name="app_name">Супер-пупер to-do</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_fragment">main_fragment</string>
+    <string name="todo">Список задач</string>
+    <string name="calendar">Календарь</string>
+    <string name="purchase_list">Список покупок</string>
+    <string name="notepad">Блокнот</string>
 </resources>
