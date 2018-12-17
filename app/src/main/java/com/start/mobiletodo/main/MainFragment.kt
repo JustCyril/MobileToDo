@@ -1,7 +1,6 @@
 package com.start.mobiletodo.main
 
-import android.content.Context
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.start.mobiletodo.notepad.NotepadActivity
 
 import com.start.mobiletodo.R
 
@@ -53,6 +53,7 @@ class MainFragment : Fragment(), MainContract.MainView {
 
         mBtnNotepad.setOnClickListener{
             mainPresentor?.startNotepad()
+
         }
 
         mBtnCalendar.setOnClickListener {
@@ -62,6 +63,9 @@ class MainFragment : Fragment(), MainContract.MainView {
         return view
     }
 
-
+    override fun startNotepadActivity() {
+        var notepadActivity = Intent(context, NotepadActivity::class.java)
+        startActivity(notepadActivity)
+    }
 
 }

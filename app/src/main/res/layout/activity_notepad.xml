@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.MainActivity">
+    tools:context=".notepad.NotepadActivity">
     <FrameLayout
-        android:id="@+id/main_container"
+        android:id="@+id/notepad_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

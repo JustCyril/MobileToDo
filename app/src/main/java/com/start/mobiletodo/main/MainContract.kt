@@ -5,6 +5,7 @@ import android.content.Context
 class MainContract {
     interface MainView {
         fun viewMessage(text: String)
+        fun startNotepadActivity()
     }
 
     interface MainPresentor{

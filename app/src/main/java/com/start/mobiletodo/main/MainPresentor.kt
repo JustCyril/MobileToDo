@@ -1,11 +1,11 @@
 package com.start.mobiletodo.main
 
-import android.widget.Toast
-
 class MainPresentor(var view: MainContract.MainView): MainContract.MainPresentor {
 
     override fun startNotepad() {
-        view.viewMessage("Пока блокнот не сделали")
+        view.startNotepadActivity()
+        //view.viewMessage("Пока блокнот не сделали")
+
     }
 
     override fun startCalendar() {
