@@ -8,7 +8,7 @@ class MainContract {
         fun startNotepadActivity()
     }
 
-    interface MainPresentor{
+    interface MainPresenter{
         fun startNotepad()
         fun startCalendar()
         fun startToDo()

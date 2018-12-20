@@ -1,11 +1,10 @@
 package com.start.mobiletodo.main
 
-class MainPresentor(var view: MainContract.MainView): MainContract.MainPresentor {
+class MainPresenter(var view: MainContract.MainView): MainContract.MainPresenter {
 
     override fun startNotepad() {
         view.startNotepadActivity()
         //view.viewMessage("Пока блокнот не сделали")
-
     }
 
     override fun startCalendar() {

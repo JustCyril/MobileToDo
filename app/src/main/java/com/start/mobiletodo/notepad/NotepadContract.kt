@@ -4,7 +4,14 @@ import android.content.Context
 
 class NotepadContract {
 
-        interface MainView {
-            fun viewMessage(text: String)
-        }
+    interface NotepadView {
+        fun viewMessage(text: String)
+        fun startNoteActivity()
+    }
+
+    interface NotepadPresenter{
+        fun openNote()
+        fun addNote()
+        fun deleteNote()
+    }
 }

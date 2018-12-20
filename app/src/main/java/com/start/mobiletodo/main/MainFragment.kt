@@ -23,7 +23,7 @@ class MainFragment : Fragment(), MainContract.MainView {
     lateinit var mBtnPurchase : Button
     lateinit var mBtnCalendar : Button
     lateinit var mBtnNotepad : Button
-    var mainPresentor:MainContract.MainPresentor? = null
+    var mainPresenter:MainContract.MainPresenter? = null
 
     companion object {
         fun newInstance(): MainFragment {
@@ -36,7 +36,7 @@ class MainFragment : Fragment(), MainContract.MainView {
 
         var view = inflater.inflate(R.layout.fragment_main, container, false)
 
-        mainPresentor = MainPresentor(this)
+        mainPresenter = MainPresenter(this)
 
         mBtnToDo = view.findViewById(R.id.btn_main_todo)
         mBtnCalendar = view.findViewById(R.id.btn_main_calendar)
@@ -44,20 +44,20 @@ class MainFragment : Fragment(), MainContract.MainView {
         mBtnPurchase = view.findViewById(R.id.btn_main_purchase)
 
         mBtnToDo.setOnClickListener{
-            mainPresentor?.startToDo()
+            mainPresenter?.startToDo()
         }
 
         mBtnPurchase.setOnClickListener {
-            mainPresentor?.startPurchase()
+            mainPresenter?.startPurchase()
         }
 
         mBtnNotepad.setOnClickListener{
-            mainPresentor?.startNotepad()
+            mainPresenter?.startNotepad()
 
         }
 
         mBtnCalendar.setOnClickListener {
-            mainPresentor?.startCalendar()
+            mainPresenter?.startCalendar()
         }
 
         return view

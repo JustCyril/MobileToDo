@@ -1,5 +1,5 @@
 package com.start.mobiletodo.model
 
-class BaseModel(var id: Int) {
+open class BaseModel(var id: Int) {
 
 }
