@@ -15,20 +15,27 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp">
 
-        <TextView
-            android:id="@+id/textview_notepad_header"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/notepad_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:text="Блокнот"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp" />
+            android:layout_height="30dp"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/ntpd_bar_titile"
+                android:textSize="16sp" />
+        </android.support.v7.widget.Toolbar>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recview_notepad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

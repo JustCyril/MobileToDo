@@ -6,7 +6,7 @@
     <EditText
         android:id="@+id/edit_text_note"
         android:gravity="top"
-        android:hint="Текст заметки"
+        android:hint="@string/hint_text_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"

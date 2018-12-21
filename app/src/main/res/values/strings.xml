@@ -8,4 +8,6 @@
     <string name="calendar">Календарь</string>
     <string name="purchase_list">Список покупок</string>
     <string name="notepad">Блокнот</string>
+    <string name="hint_text_note">Текст заметки</string>
+    <string name="ntpd_bar_titile">Блокнот</string>
 </resources>
