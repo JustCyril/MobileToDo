@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/edit_text_note"
+        android:id="@+id/edittеxt_title_note"
         android:gravity="top"
-        android:hint="@string/hint_text_note"
+        android:hint="@string/hint_title_note"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="72dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/edittext_text_note"
+        android:hint="@string/hint_text_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittеxt_title_note"/>
 
 </android.support.constraint.ConstraintLayout>
