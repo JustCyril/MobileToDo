@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/item_recyview_notepad"
+        android:id="@+id/item_textView_notepad"
         android:layout_width="match_parent"
         android:layout_height="36dp"/>
 </android.support.constraint.ConstraintLayout>
