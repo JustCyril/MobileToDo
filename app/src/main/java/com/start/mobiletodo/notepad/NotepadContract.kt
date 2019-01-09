@@ -1,6 +1,6 @@
 package com.start.mobiletodo.notepad
 
-import android.content.Context
+import com.start.mobiletodo.model.Note
 
 class NotepadContract {
 
@@ -10,7 +10,7 @@ class NotepadContract {
     }
 
     interface NotepadPresenter{
-        fun openNote()
+        fun openNote(note : Note)
         fun addNote()
         fun deleteNote()
     }

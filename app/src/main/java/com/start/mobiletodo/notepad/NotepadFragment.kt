@@ -41,11 +41,14 @@ class NotepadFragment : Fragment(), NotepadContract.NotepadView {
         ntpdFabBtn = view.findViewById(R.id.fab_notepad)
         ntpdRecView = view.findViewById(R.id.recview_notepad)
         //internet says it`s necessary to describe LayoutManager for RecycleView
-        ntpdRecView.layoutManager = LinearLayoutManager(context)
+        ntpdRecView.layoutManager = LinearLayoutManager(activity)
         //get data for adapter and call adapter after thar
         val notesRepo = Repository()
         val notes : List<Note> = notesRepo.getNotes()
-        ntpdRecView.adapter = NotepadAdapter(notes)
+
+        ntpdRecView.adapter = NotepadAdapter(notes) {
+            item -> ntpdPresenter?.openNote(item)
+        }
 
         ntpdFabBtn.setOnClickListener{
             ntpdPresenter?.addNote()
