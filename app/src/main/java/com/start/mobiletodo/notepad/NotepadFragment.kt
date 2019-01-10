@@ -58,8 +58,17 @@ class NotepadFragment : Fragment(), NotepadContract.NotepadView {
 
     }
 
+    // Decided to use function overloading for blank/filled activity opening
     override fun startNoteActivity() {
         val noteActivity = Intent(context, NoteActivity::class.java)
         startActivity(noteActivity)
     }
+
+    override fun startNoteActivity(note : Note) {
+        val noteActivity = Intent(context, NoteActivity::class.java)
+        noteActivity.putExtra("Title", note.title)
+        noteActivity.putExtra("Text", note.text)
+        startActivity(noteActivity)
+    }
+
 }

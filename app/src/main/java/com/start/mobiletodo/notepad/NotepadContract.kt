@@ -6,7 +6,9 @@ class NotepadContract {
 
     interface NotepadView {
         fun viewMessage(text: String)
+        // Decided to use function overloading for blank/filled activity opening
         fun startNoteActivity()
+        fun startNoteActivity(note : Note)
     }
 
     interface NotepadPresenter{
