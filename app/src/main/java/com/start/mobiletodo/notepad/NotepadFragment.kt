@@ -66,8 +66,8 @@ class NotepadFragment : Fragment(), NotepadContract.NotepadView {
 
     override fun startNoteActivity(note : Note) {
         val noteActivity = Intent(context, NoteActivity::class.java)
-        noteActivity.putExtra("Title", note.title)
-        noteActivity.putExtra("Text", note.text)
+        noteActivity.putExtra("NoteTitle", note.title)
+        noteActivity.putExtra("NoteText", note.text)
         startActivity(noteActivity)
     }
 
