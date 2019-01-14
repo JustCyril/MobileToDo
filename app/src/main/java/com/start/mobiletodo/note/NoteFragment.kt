@@ -13,7 +13,7 @@ import com.start.mobiletodo.R
 
 
 
-class NoteFragment: Fragment(), NoteContract.NoteView {
+class NoteFragment: Fragment(), NoteContract.NoteView, NoteContract.IOnBackPressed {
 
     override fun viewMessage(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
@@ -47,20 +47,22 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
 
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onBackPressed() {
         //Decided to use AlertDialog with question about saving when user click "back"-button
-        val context = getActivity()?.getApplicationContext()
-        val builder = AlertDialog.Builder(context!!)
-        builder.setTitle("Сохранение записи")
-        builder.setMessage("Сохрнаить изменения?")
-        builder.setPositiveButton("YES"){dialog, which ->
-            Toast.makeText(context, "Сохранено",Toast.LENGTH_SHORT).show()}
-        builder.setNegativeButton("No"){dialog, which ->
-            Toast.makeText(context, "Изменения не сохранены",Toast.LENGTH_SHORT).show()}
 
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+        AlertDialog.Builder(context!!) //без (!!) не хочет работать, что за фигня
+                    .setTitle("Сохранение записи")
+                    .setMessage("Сохранить изменения?")
+                    .setPositiveButton("YES") { dialog, which ->
+                        notePresenter?.saveNote()
+                        Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("No") { dialog, which ->
+                        Toast.makeText(context, "Изменения не сохранены", Toast.LENGTH_SHORT).show()
+                    }
+                    .create()
+                    .show()
     }
+
 
 }

@@ -15,4 +15,12 @@ class NoteActivity : AppCompatActivity() {
                 .add(R.id.note_container, NoteFragment.newInstance(), "note_fragment")
                 .commit()
     }
+
+    override fun onBackPressed() {
+        val fragment =
+                this.supportFragmentManager.findFragmentById(R.id.note_container)
+        (fragment as? NoteContract.IOnBackPressed)?.onBackPressed()?.let {
+            super.onBackPressed()
+        }
+    }
 }

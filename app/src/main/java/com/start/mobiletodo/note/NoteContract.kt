@@ -9,4 +9,8 @@ class NoteContract {
     interface NotePresenter{
         fun saveNote()
     }
+
+    interface IOnBackPressed {
+        fun onBackPressed()
+    }
 }
