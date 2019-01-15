@@ -13,7 +13,7 @@ import com.start.mobiletodo.R
 
 
 
-class NoteFragment: Fragment(), NoteContract.NoteView, NoteContract.IOnBackPressed {
+class NoteFragment: Fragment(), NoteContract.NoteView, NoteContract.OnBackPressedListener {
 
     override fun viewMessage(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
@@ -47,21 +47,20 @@ class NoteFragment: Fragment(), NoteContract.NoteView, NoteContract.IOnBackPress
 
     }
 
-    override fun onBackPressed() {
-        //Decided to use AlertDialog with question about saving when user click "back"-button
-
+    override fun onBackPressed() : Boolean {
         AlertDialog.Builder(context!!) //без (!!) не хочет работать, что за фигня
-                    .setTitle("Сохранение записи")
-                    .setMessage("Сохранить изменения?")
-                    .setPositiveButton("YES") { dialog, which ->
-                        notePresenter?.saveNote()
-                        Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
-                    }
-                    .setNegativeButton("No") { dialog, which ->
-                        Toast.makeText(context, "Изменения не сохранены", Toast.LENGTH_SHORT).show()
-                    }
-                    .create()
-                    .show()
+                .setTitle("Сохранение записи")
+                .setMessage("Сохранить изменения?")
+                .setPositiveButton("YES") { dialog, which ->
+                    notePresenter?.saveNote()
+                    Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("No") { dialog, which ->
+                    Toast.makeText(context, "Изменения не сохранены", Toast.LENGTH_SHORT).show()
+                }
+                .create()
+                .show()
+        return true
     }
 
 

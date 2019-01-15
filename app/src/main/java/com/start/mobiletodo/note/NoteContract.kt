@@ -10,7 +10,7 @@ class NoteContract {
         fun saveNote()
     }
 
-    interface IOnBackPressed {
-        fun onBackPressed()
+    interface OnBackPressedListener {
+        fun onBackPressed() : Boolean
     }
 }

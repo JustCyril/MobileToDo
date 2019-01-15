@@ -2,6 +2,7 @@ package com.start.mobiletodo.note
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import com.start.mobiletodo.R
 
 class NoteActivity : AppCompatActivity() {
@@ -17,10 +18,12 @@ class NoteActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val fragment =
+/*        val fragment =
                 this.supportFragmentManager.findFragmentById(R.id.note_container)
-        (fragment as? NoteContract.IOnBackPressed)?.onBackPressed()?.let {
+        (fragment as? NoteContract.IOnBackPressed)?.onBackPressed()?.not()?.let {
             super.onBackPressed()
-        }
+        }*/
+            return NoteContract.OnBackPressedListener.onBackPressed()
+
     }
 }
