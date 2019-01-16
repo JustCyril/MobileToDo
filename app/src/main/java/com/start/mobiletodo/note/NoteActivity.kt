@@ -9,7 +9,7 @@ class NoteActivity : AppCompatActivity(), NoteContract.OnBackPressedListener {
 
     var noteFragment: NoteFragment = NoteFragment.newInstance()
 
-    override fun onBack(): Boolean {
+    override fun onBack() {
         super.onBackPressed()
     }
 

@@ -63,11 +63,11 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
                 .setPositiveButton("YES") { dialog, which ->
                     notePresenter?.saveNote()
                     Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
-                    onBackPressedListener?.onBackPressed()
+                    onBackPressedListener?.onBack()
                 }
                 .setNegativeButton("No") { dialog, which ->
                     Toast.makeText(context, "Изменения не сохранены", Toast.LENGTH_SHORT).show()
-                    onBackPressedListener?.onBackPressed()
+                    onBackPressedListener?.onBack()
                 }
                 .create()
                 .show()

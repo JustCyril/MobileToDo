@@ -11,6 +11,6 @@ class NoteContract {
     }
 
     interface OnBackPressedListener {
-        fun onBack() : Boolean
+        fun onBack()
     }
 }
