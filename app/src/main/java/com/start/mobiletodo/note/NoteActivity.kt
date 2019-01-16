@@ -7,23 +7,30 @@ import com.start.mobiletodo.R
 
 class NoteActivity : AppCompatActivity() {
 
+    var noteFragment: NoteFragment = NoteFragment.newInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
-
+        noteFragment.setOnBackPresed(object: NoteContract.OnBackPressedListener{
+            override fun onBackPressed(): Boolean {
+                Back()
+                return true
+            }
+        })
         supportFragmentManager
                 .beginTransaction()
-                .add(R.id.note_container, NoteFragment.newInstance(), "note_fragment")
+                .add(R.id.note_container, noteFragment, "note_fragment")
                 .commit()
     }
 
     override fun onBackPressed() {
-/*        val fragment =
-                this.supportFragmentManager.findFragmentById(R.id.note_container)
-        (fragment as? NoteContract.IOnBackPressed)?.onBackPressed()?.not()?.let {
-            super.onBackPressed()
-        }*/
-            return NoteContract.OnBackPressedListener.onBackPressed()
-
+        noteFragment.onBackPressed()
     }
+
+    fun Back(){
+        super.onBackPressed()
+    }
+
+
 }

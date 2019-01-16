@@ -1,5 +1,6 @@
 package com.start.mobiletodo.note
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,7 +14,15 @@ import com.start.mobiletodo.R
 
 
 
-class NoteFragment: Fragment(), NoteContract.NoteView, NoteContract.OnBackPressedListener {
+
+class NoteFragment: Fragment(), NoteContract.NoteView {
+
+    private var onBackPressedListener: NoteContract.OnBackPressedListener? = null
+
+    fun setOnBackPresed(listener: NoteContract.OnBackPressedListener){
+        this.onBackPressedListener = listener
+    }
+
 
     override fun viewMessage(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
@@ -47,16 +56,18 @@ class NoteFragment: Fragment(), NoteContract.NoteView, NoteContract.OnBackPresse
 
     }
 
-    override fun onBackPressed() : Boolean {
+    fun onBackPressed() : Boolean {
         AlertDialog.Builder(context!!) //без (!!) не хочет работать, что за фигня
                 .setTitle("Сохранение записи")
                 .setMessage("Сохранить изменения?")
                 .setPositiveButton("YES") { dialog, which ->
                     notePresenter?.saveNote()
                     Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
+                    onBackPressedListener?.onBackPressed()
                 }
                 .setNegativeButton("No") { dialog, which ->
                     Toast.makeText(context, "Изменения не сохранены", Toast.LENGTH_SHORT).show()
+                    onBackPressedListener?.onBackPressed()
                 }
                 .create()
                 .show()
