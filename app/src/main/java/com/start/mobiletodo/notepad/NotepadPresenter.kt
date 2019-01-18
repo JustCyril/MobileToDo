@@ -5,7 +5,7 @@ import com.start.mobiletodo.model.Note
 class NotepadPresenter(var view: NotepadContract.NotepadView): NotepadContract.NotepadPresenter {
 
     override fun addNote() {
-        view.startNoteActivity()
+        view.startNoteActivityForAdd()
         //view.viewMessage("Недоступно")
     }
 
@@ -14,7 +14,7 @@ class NotepadPresenter(var view: NotepadContract.NotepadView): NotepadContract.N
     }
 
     override fun openNote(note : Note) {
-        view.startNoteActivity(note)
+        view.startNoteActivityForChange(note)
     }
 
 }

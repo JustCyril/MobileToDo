@@ -4,6 +4,7 @@ class NoteContract {
 
     interface NoteView {
         fun viewMessage(text: String)
+        fun saveDataFromEditText()
     }
 
     interface NotePresenter{

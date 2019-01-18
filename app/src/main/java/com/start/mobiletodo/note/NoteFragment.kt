@@ -2,6 +2,7 @@ package com.start.mobiletodo.note
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -56,7 +57,7 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
 
     }
 
-    fun onBackPressed() : Boolean {
+    fun onBackPressed() {
         AlertDialog.Builder(context!!) //без (!!) не хочет работать, что за фигня
                 .setTitle("Сохранение записи")
                 .setMessage("Сохранить изменения?")
@@ -71,7 +72,17 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
                 }
                 .create()
                 .show()
-        return true
+    }
+
+    override fun saveDataFromEditText() {
+        val noteTitleToReturn = noteTitle.text
+        val noteTextToReturn = noteText.text
+
+        val intent = Intent()
+        intent.putExtra("ReturnNoteTitle", noteTitleToReturn)
+        intent.putExtra("ReturnNoteText", noteTextToReturn)
+        activity?.setResult(1, intent);
+        activity?.finish();
     }
 
 

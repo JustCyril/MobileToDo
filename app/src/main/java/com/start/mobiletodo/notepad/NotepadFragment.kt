@@ -13,7 +13,6 @@ import android.widget.Toast
 import com.start.mobiletodo.R
 import com.start.mobiletodo.data.Repository
 import com.start.mobiletodo.model.Note
-
 import com.start.mobiletodo.note.NoteActivity
 
 class NotepadFragment : Fragment(), NotepadContract.NotepadView {
@@ -25,6 +24,8 @@ class NotepadFragment : Fragment(), NotepadContract.NotepadView {
     lateinit var ntpdFabBtn : FloatingActionButton
     lateinit var ntpdRecView : RecyclerView
     var ntpdPresenter:NotepadContract.NotepadPresenter? = null
+    val REQUEST_NEW_NOTE = 0
+    var REQUEST_CHANGE_NOTE = 0 //it`s needed when changed note info return from NoteActivity
 
     companion object {
         fun newInstance(): NotepadFragment {
@@ -59,16 +60,43 @@ class NotepadFragment : Fragment(), NotepadContract.NotepadView {
     }
 
     // Decided to use function overloading for blank/filled activity opening
-    override fun startNoteActivity() {
+    override fun startNoteActivityForAdd() {
         val noteActivity = Intent(context, NoteActivity::class.java)
-        startActivity(noteActivity)
+        startActivityForResult(noteActivity, REQUEST_NEW_NOTE)
     }
 
-    override fun startNoteActivity(note : Note) {
+    override fun startNoteActivityForChange(note : Note) {
         val noteActivity = Intent(context, NoteActivity::class.java)
         noteActivity.putExtra("NoteTitle", note.title)
         noteActivity.putExtra("NoteText", note.text)
-        startActivity(noteActivity)
+        REQUEST_CHANGE_NOTE = note.id
+        startActivityForResult(noteActivity, REQUEST_CHANGE_NOTE)
     }
+
+    // Is this method called when the second activity finishes in both cases?
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val returnNoteTitle = data?.getStringExtra("ReturnNoteTitle")
+        val returnNoteText = data?.getStringExtra("ReturnNoteText")
+        //Что делать в таком случае? Как этот NullSafety-обходить?
+        val returnedNote = Note(returnNoteTitle, returnNoteText, 0)
+
+        val notesRepo = Repository()
+
+        if (requestCode == REQUEST_NEW_NOTE){
+            if (resultCode == 1) {
+
+                notesRepo.addNote(returnedNote)
+            }
+        }
+        if (requestCode == REQUEST_CHANGE_NOTE){
+            if (resultCode == 1) {
+                returnedNote.id = REQUEST_CHANGE_NOTE
+                notesRepo.changeNote(returnedNote)
+            }
+        }
+    }
+
 
 }
