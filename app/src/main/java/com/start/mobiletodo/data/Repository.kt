@@ -17,7 +17,7 @@ class Repository {
 
     fun addNote(note : Note) {
         var list = FakeData().getNotes()
-        note.id = list.size+1
+        note.id = list.last().id+1
         list.add(note)
         saveNotes(list)
     }
@@ -31,4 +31,5 @@ class Repository {
     fun saveNotes(notes: ArrayList<Note>) {
         //do smth for save our notes
     }
+
 }

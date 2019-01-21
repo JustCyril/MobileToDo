@@ -12,8 +12,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import com.start.mobiletodo.R
-
-
+import com.start.mobiletodo.data.Repository
+import com.start.mobiletodo.model.Note
 
 
 class NoteFragment: Fragment(), NoteContract.NoteView {
@@ -32,6 +32,7 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
     lateinit var noteTitle : EditText
     lateinit var noteText : EditText
     var notePresenter:NoteContract.NotePresenter? = null
+    var noteId = 0
 
     companion object {
         fun newInstance(): NoteFragment {
@@ -52,6 +53,13 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
         val intent = getActivity()?.getIntent()
         noteTitle.setText(intent?.getStringExtra("NoteTitle"))
         noteText.setText(intent?.getStringExtra("NoteText"))
+
+        // We need noteId = 0 for future action, that`s why there is another null-check for it
+        // We never know what can be...
+        if (intent?.getStringExtra("NoteId") != null) {
+            noteId = intent.getStringExtra("NoteId").toInt()
+        }
+
 
         return view
 
@@ -75,15 +83,17 @@ class NoteFragment: Fragment(), NoteContract.NoteView {
     }
 
     override fun saveDataFromEditText() {
-        val noteTitleToReturn = noteTitle.text
-        val noteTextToReturn = noteText.text
+        val noteTitleToSave = noteTitle.text.toString()
+        val noteTextToSave = noteText.text.toString()
+        val noteToSave = Note(noteTitleToSave, noteTextToSave, noteId)
 
-        val intent = Intent()
-        intent.putExtra("ReturnNoteTitle", noteTitleToReturn)
-        intent.putExtra("ReturnNoteText", noteTextToReturn)
-        activity?.setResult(1, intent);
-        activity?.finish();
+        val notesRepo = Repository()
+        if (noteId == 0) {
+            notesRepo.addNote(noteToSave)
+        } else {
+            notesRepo.changeNote(noteToSave)
+        }
+
     }
-
 
 }
